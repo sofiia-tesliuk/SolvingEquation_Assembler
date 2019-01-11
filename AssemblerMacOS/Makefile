@@ -8,12 +8,13 @@ SUFFIX = .exe
 OBJ_DIR = obj
 MKDIR_PROJECT = mkdir -p
 MAIN_FILE = main
-FUNCTION_FILE = solving_equation
+FUNCTION_FILE = solver
 
 all: main
 
 main: $(MAIN_FILE).o $(FUNCTION_FILE)
 	$(LINKER) $^.macho64.o -o $@ $(LDFLAGS)
+	make clean_additional_files
 
 $(FUNCTION_FILE).elf.o: $(FUNCTION_FILE).asm
 	$(FASM) $< $@
@@ -30,4 +31,9 @@ $(MAIN_FILE).o: $(MAIN_FILE).c
 PHONY: clean
 
 clean:
-	rm *.o *.bc *.i *.s $(FUNCTION_FILE)
+	rm $(FUNCTION_FILE) $(MAIN_FILE)
+
+PHONY: clean_additional_files
+
+clean_additional_files:
+	rm *.o *.bc *.i *.s

@@ -2,36 +2,40 @@
 #include <stdlib.h>
 
 
-void solving_equation(int* a, int* b, int* c);
-int test_op(int a, int b);
-
+// void solving_equation(float* a, float* b, float* c, int n);
+void solver(int* a, int* b, int* c, size_t n);
 
 int main() {
    // int a[] = {2, 3, 4, 5};
    // int b[] = {3, 1, 6, 7};
    // int c[4];
+   int n = 4;
+
+   // float* a;
+   // float* b;
+   // float* c;
+   //
+   // c = (float *) malloc(n*sizeof(float));
+   // a = (float *) malloc(n*sizeof(float));
+   // b = (float *) malloc(n*sizeof(float));
 
    int* a;
    int* b;
    int* c;
 
-   c = (int *) malloc(4*sizeof(int));
-   a = (int *) malloc(4*sizeof(int));
-   b = (int *) malloc(4*sizeof(int));
+   c = (int *) malloc(n*sizeof(int));
+   a = (int *) malloc(n*sizeof(int));
+   b = (int *) malloc(n*sizeof(int));
 
-   for (int i = 0; i < 4; i++){
-     a[i] = 18;
-     b[i] = 3;
+   for (int i = 0; i < n; i++){
+     a[i] = 4;
+     b[i] = 18;
      c[i] = 0;
    }
    printf("%s\n", "Hello from this point!");
-    solving_equation(a, b, c);
+    solver(a, b, c, 4);
     for (int i = 0; i < 4; i++){
-        printf("%d / %d = %d\n", a[i], b[i], c[i]);
+        printf("%d / %d = %d\n", b[i], a[i], c[i]);
     }
-
-    int f = 5;
-    int g = 5;
-    printf("%s\n%d + %d = %d\n", "Just adding", f, g, test_op(f, g));
     return 0;
 }
