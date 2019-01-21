@@ -6,26 +6,20 @@ public start
 
 
 solver:
-    ;mov r8d, dword [rdi] ;rdi - a array
-    ;mov r9d, dword [rsi] ; rsi - b array
-    call main
-    ret
-
-main:
-    jmp next_values
     jmp division
-    jnz main
-    ret
 
-next_values:
-    mov r8d, dword [rdi + 4*rcx]
-    mov r9d, dword [rsi + 4*rcx]
-    dec rcx
 
 division:
-    mov r10d, dword [r8d]
-    add r10d, dword [r9d]
-    mov [rdx + 4*rcx], r10d ; rdx - c array
+    dec rcx ; decrease counter (n)
+
+    fld dword [rsi + 4*rcx]  ; st(0), load number from b array and push it onto the fpu stack
+    fld dword [rdi + 4*rcx]  ; st(0), load number from a array and push it onto the fpu stack
+
+    fdivp      ; st(0) = st(1)/st(0), pop two numbers, divide them, push result on the stack
+    fchs       ; st(0) = -st(0), changes sign of last value in stack
+    fstp  dword [rdx + 4*rcx]
+
+    jnz division
 
 start:
 

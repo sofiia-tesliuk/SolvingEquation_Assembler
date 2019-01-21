@@ -4,15 +4,13 @@ CC = gcc
 CFLAGS += -D__USE_WSL_ANSI_STDIO=1 # Important for MinGW, indifferent for others
 CFLAGS += -g -save-temps -masm=intel -Og
 LDFLAGS += -g -Og
-SUFFIX = .exe
-OBJ_DIR = obj
 MKDIR_PROJECT = mkdir -p
-MAIN_FILE = main
+MAIN_FILE = c_demo
 FUNCTION_FILE = solver
 
-all: main
+all: c_demo
 
-main: $(MAIN_FILE).o $(FUNCTION_FILE)
+c_demo: $(MAIN_FILE).o $(FUNCTION_FILE)
 	$(LINKER) $^.macho64.o -o $@ $(LDFLAGS)
 	make clean_additional_files
 
