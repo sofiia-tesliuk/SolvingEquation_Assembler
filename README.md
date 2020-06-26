@@ -1,2 +1,4 @@
 # SolvingEquation_Assembler
-Функція приймає вказівник на два масиви 32-бітних floating point чисел, розв'язує рівняння a*x + b = 0, та зберігає результат у третій, переданий їй масив.
+
+Function receives pointers to two arrays of 32-bit floating point numbers. Solves the equation a*x + b = 0, and saves the result to the third received array.
+
